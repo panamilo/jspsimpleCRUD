@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jspCRUD:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>jspCRUD</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="jspCRUD-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="jspCRUD:war exploded" />
+    </root>
+  </artifact>
+</component>
