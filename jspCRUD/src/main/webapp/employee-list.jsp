@@ -20,12 +20,14 @@
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Employees</a></li>
         </ul>
+        <ul class="navbar-nav">
+            <li><a href="logout" class="nav-link">Logout</a></li>
+        </ul>
     </nav>
 </header>
 <br>
 
 <div class="row">
-    <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
     <div class="container">
         <h3 class="text-center">List of Employees</h3>
