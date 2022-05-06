@@ -21,7 +21,7 @@
             <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Employees</a></li>
         </ul>
         <ul class="navbar-nav">
-            <li><a href="logout" class="nav-link">Logout</a></li>
+            <li><a href="logout" class="nav-link" >Logout</a></li>
         </ul>
     </nav>
 </header>
@@ -60,7 +60,9 @@
                     <td>
                         <c:out value="${employee.last_name}" />
                     </td>
-                    <td><a href="edit?id=<c:out value='${employee.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${employee.id}' />">Delete</a></td>
+                    <td><a href="edit?id=<c:out value='${employee.id}' />" class="btn btn-outline-primary">Edit</a>
+                        <a href="delete?id=<c:out value='${employee.id}' />" class="btn btn-outline-danger">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
             <!-- } -->

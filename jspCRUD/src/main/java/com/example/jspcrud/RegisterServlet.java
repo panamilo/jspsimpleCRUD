@@ -1,17 +1,14 @@
 package com.example.jspcrud;
-
 import java.io.IOException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginDAO loginDAO;
 
@@ -19,27 +16,27 @@ public class LoginServlet extends HttpServlet {
         loginDAO = new LoginDAO();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String first_name = request.getParameter("first_name");
+        String last_name = request.getParameter("last_name");
+
         LoginBean loginBean = new LoginBean();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
+        loginBean.setFirst_name(first_name);
+        loginBean.setLast_name(last_name);
 
         try {
-            if (loginDAO.validate(loginBean)) {
-                HttpSession session = request.getSession();
-                session.setAttribute("username",username);
-                response.sendRedirect("Employee-list");
-            } else {
-                HttpSession session = request.getSession();
-               // session.setAttribute("user", username);
-                response.sendRedirect("login.jsp");
-            }
-        } catch (ClassNotFoundException e) {
+            loginDAO.registerUser(loginBean);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
 
+        response.sendRedirect("login.jsp");
+    }
 }

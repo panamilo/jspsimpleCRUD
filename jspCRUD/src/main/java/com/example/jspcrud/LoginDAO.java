@@ -31,7 +31,37 @@ public class LoginDAO {
         return status;
     }
 
-    private void printSQLException(SQLException ex) {
+    public int registerUser(LoginBean loginBean) throws ClassNotFoundException {
+        String INSERT_USERS_SQL = "INSERT INTO users" +
+                "  (username, password, first_name, last_name) VALUES " +
+                " (?, ?, ?, ?);";
+
+        int result = 0;
+
+        Class.forName("org.postgresql.Driver");
+
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/crudDB", "postgres", "123");
+
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+            preparedStatement.setString(1, loginBean.getUsername());
+            preparedStatement.setString(2, loginBean.getPassword());
+            preparedStatement.setString(3, loginBean.getFirst_name());
+            preparedStatement.setString(4, loginBean.getLast_name());
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            result = preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+        return result;
+    }
+
+
+        private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
