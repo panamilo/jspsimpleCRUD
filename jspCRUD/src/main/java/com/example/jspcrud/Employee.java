@@ -1,5 +1,6 @@
 package com.example.jspcrud;
 
+
 public class Employee {
     protected int id;
     protected String first_name;
@@ -44,8 +45,6 @@ public class Employee {
     public void setLast_name(String last_name){
         this.last_name=last_name;
     }
-
-
 
 }
 

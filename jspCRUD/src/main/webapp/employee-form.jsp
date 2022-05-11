@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 
@@ -48,13 +48,15 @@
                     </c:if>
 
                     <fieldset class="form-group">
-                        <label>Employee First Name</label> <input type="text" value="<c:out value='${employee.first_name}' />" class="form-control" name="first_name" required="required">
+                        <label for="first_name">Employee First Name</label> <input id="first_name" type="text" value="<c:out value='${employee.first_name}' />" class="form-control" name="first_name" required="required">
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label>Employee Last Name</label> <input type="text" value="<c:out value='${employee.last_name}' />" class="form-control" name="last_name">
+                        <label for="last_name">Employee Last Name</label> <input id="last_name" type="text" value="<c:out value='${employee.last_name}' />" class="form-control" name="last_name">
                     </fieldset>
-
+                        <fieldset class="form-group">
+                            <label for="date_of_birth">Date of Birth</label> <input id="date_of_birth" type="date" value="<c:out value='${employee.date_of_birth}' />" class="form-control" name="date_of_birth">
+                        </fieldset>
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>
         </div>

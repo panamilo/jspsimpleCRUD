@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class EmployeeDAO {
-    private String jdbcURL = "jdbc:postgresql://localhost:5432/crudDB";
+    private String jdbcURL = "jdbc:postgresql://localhost:5432/cruddb";
     private String jdbcUsername = "postgres";
     private String jdbcPassword = "123";
 

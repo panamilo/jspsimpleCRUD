@@ -13,7 +13,7 @@ public class LoginDAO {
         Class.forName("org.postgresql.Driver");
 
         try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5432/crudDB", "postgres", "123");
+                .getConnection("jdbc:postgresql://localhost:5432/cruddb", "postgres", "123");
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement("select * from users where username = ? and password = ? ")) {
@@ -40,7 +40,7 @@ public class LoginDAO {
 
         Class.forName("org.postgresql.Driver");
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/crudDB", "postgres", "123");
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cruddb", "postgres", "123");
 
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, loginBean.getUsername());
