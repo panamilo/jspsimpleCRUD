@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +17,13 @@ public class EmployeeDAO {
     private String jdbcUsername = "postgres";
     private String jdbcPassword = "123";
 
-    private static final String INSERT_EMPLOYEE_SQL = "INSERT INTO employee" + "  (first_name, last_name) VALUES " +
-            " (?, ?);";
+    private static final String INSERT_EMPLOYEE_SQL = "INSERT INTO employee" + "  (first_name, last_name,date_of_birth) VALUES " +
+            " (?, ?, ?);";
 
-    private static final String SELECT_EMPLOYEE_BY_ID = "select id,first_name,last_name from employee where id =?";
+    private static final String SELECT_EMPLOYEE_BY_ID = "select id,first_name,last_name,date_of_birth from employee where id =?";
     private static final String SELECT_ALL_EMPLOYEES = "select * from employee";
     private static final String DELETE_EMPLOYEES_SQL = "delete from employee where id = ?;";
-    private static final String UPDATE_EMPLOYEES_SQL = "update employee set first_name = ?,last_name= ? where id = ?;";
+    private static final String UPDATE_EMPLOYEES_SQL = "update employee set first_name = ?,last_name= ?,date_of_birth=? where id = ?;";
 
 
     public EmployeeDAO() {}
@@ -49,6 +50,7 @@ public class EmployeeDAO {
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPLOYEE_SQL)) {
             preparedStatement.setString(1, employee.getFirst_name());
             preparedStatement.setString(2, employee.getLast_name());
+            preparedStatement.setObject(3, employee.getDate_of_birth());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -71,7 +73,8 @@ public class EmployeeDAO {
             while (rs.next()) {
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
-                employee = new Employee(id, first_name,last_name);
+                LocalDate date_of_birth=rs.getObject("date_of_birth",LocalDate.class);
+                employee = new Employee(id, first_name,last_name,date_of_birth);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -97,7 +100,8 @@ public class EmployeeDAO {
                 int id = rs.getInt("id");
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
-                employees.add(new Employee(id, first_name,last_name));
+                LocalDate date_of_birth=rs.getObject("date_of_birth",LocalDate.class);
+                employees.add(new Employee(id, first_name,last_name,date_of_birth));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -120,7 +124,8 @@ public class EmployeeDAO {
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_EMPLOYEES_SQL);) {
             statement.setString(1, employee.getFirst_name());
             statement.setString(2, employee.getLast_name());
-            statement.setInt(3, employee.getId());
+            statement.setObject(3,employee.getDate_of_birth());
+            statement.setInt(4, employee.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }

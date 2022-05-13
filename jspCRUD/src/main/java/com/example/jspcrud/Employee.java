@@ -1,25 +1,30 @@
 package com.example.jspcrud;
 
+import java.time.LocalDate;
 
 public class Employee {
     protected int id;
     protected String first_name;
     protected String last_name;
 
+    protected LocalDate date_of_birth;
+
 
     public Employee(){}
 
-    public Employee(String first_name,String last_name){
+    public Employee(String first_name,String last_name,LocalDate date_of_birth){
         super();
         this.first_name=first_name;
         this.last_name=last_name;
+        this.date_of_birth=date_of_birth;
 
     }
-    public Employee(int id,String first_name,String last_name){
+    public Employee(int id, String first_name, String last_name,LocalDate date_of_birth){
         super();
         this.id=id;
         this.first_name=first_name;
         this.last_name=last_name;
+        this.date_of_birth=date_of_birth;
 
     }
 
@@ -45,6 +50,10 @@ public class Employee {
     public void setLast_name(String last_name){
         this.last_name=last_name;
     }
+
+    public LocalDate getDate_of_birth(){ return date_of_birth;}
+
+    public void setDate_of_birth(LocalDate date_of_birth){this.date_of_birth=date_of_birth;}
 
 }
 

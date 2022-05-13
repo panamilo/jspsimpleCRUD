@@ -13,26 +13,26 @@
     </nav>
 </head>
 <body>
-<div class="container" align="center">
+<div class="container col-md-5">
     <h1 style="margin: 10px;">User Login Form </h1>
-    <div class="card" align="center">
+    <div class="card">
     <div class="card-body">
     <form action="<%=request.getContextPath()%>/login" method="post">
         <div class="form-group">
-                <label for="username" class="col-md-4 col-form-label" style="font-size: 20px;">Username</label>
+                <label for="username" class="col-md-4 col-form-label" >Username</label>
                 <div class="col-sm-7">
                     <input id="username" type="text" class="form-control" name="username" placeholder="Enter your username" required>
                 </div>
         </div>
         <div class="form-group">
-            <label for="password" class="col-md-4 col-form-label" style="font-size: 20px;" >Password</label>
+            <label for="password" class="col-md-4 col-form-label">Password</label>
             <div class="col-sm-7">
                 <input id="password" type="password" class="form-control" name="password" placeholder="Enter your password" required>
             </div>
         </div>
-        <button type="submit" class="btn btn-success">LOGIN</button>
+        <button type="submit" class="btn btn-success" style="margin: 15px;">LOGIN</button>
         <div>
-        <label style="text-align:center;margin-top: 10px"> Don't have an account? </label><a href="register.jsp"> Register here now.</a>
+        <label style="text-align:center;margin-left: 15px;margin-top: 5px;"> Don't have an account? </label><a href="register.jsp"> Register here now.</a>
         </div>
     </form>
     </div>

@@ -13,36 +13,36 @@
   </nav>
 </head>
 <body>
-<div class="container" align="center">
-  <h1>Fill in your credentials </h1>
-  <div class="card" align="center">
+<div class="container col-md-5" >
+  <h1 style="margin: 10px;">Fill in your credentials </h1>
+  <div class="card">
     <div class="card-body">
       <form action="<%=request.getContextPath()%>/register" method="post">
         <div class="form-group">
-          <label for="username" class="col-md-4 col-form-label" style="font-size: 20px;">Username</label>
+          <label for="username" class="col-md-4 col-form-label">Username</label>
           <div class="col-sm-7">
             <input id="username" type="text" class="form-control" name="username" placeholder="Enter your username" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="password" class="col-md-4 col-form-label" style="font-size: 20px;">Password</label>
+          <label for="password" class="col-md-4 col-form-label">Password</label>
           <div class="col-sm-7">
             <input id="password" type="password" class="form-control" name="password" placeholder="Enter your password" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="first_name" class="col-md-4 col-form-label" style="font-size: 20px;">First Name</label>
+          <label for="first_name" class="col-md-4 col-form-label">First Name</label>
           <div class="col-sm-7">
             <input id="first_name" type="text" class="form-control" name="first_name" placeholder="Enter your first name" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="last_name" class="col-md-4 col-form-label" style="font-size: 20px;">Last Name</label>
+          <label for="last_name" class="col-md-4 col-form-label">Last Name</label>
           <div class="col-sm-7">
             <input id="last_name" type="text" class="form-control" name="last_name" placeholder="Enter your last name" required>
           </div>
         </div>
-        <button type="submit" class="btn btn-success">REGISTER</button>
+        <button type="submit" class="btn btn-success" style="margin-left: 15px;">REGISTER</button>
       </form>
     </div>
   </div>

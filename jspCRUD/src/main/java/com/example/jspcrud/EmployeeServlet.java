@@ -1,7 +1,11 @@
 package com.example.jspcrud;
 
+
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/")
 public class EmployeeServlet extends HttpServlet  {
     private static final long serialVersionUID = 1L;
+
     private EmployeeDAO employeeDAO;
 
     public void init(){
@@ -31,6 +36,7 @@ public class EmployeeServlet extends HttpServlet  {
         HttpSession session = request.getSession();
         if (session.getAttribute("username") != null) {
             String action = request.getServletPath();
+            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 
 
             try {
@@ -91,17 +97,20 @@ public class EmployeeServlet extends HttpServlet  {
             throws SQLException, IOException {
             String first_name = request.getParameter("first_name");
             String last_name = request.getParameter("last_name");
-            Employee newEmployee = new Employee(first_name, last_name);
-            employeeDAO.insertEmployee(newEmployee);
-            response.sendRedirect("list");
+            String str=request.getParameter("date_of_birth");
+            LocalDate date_of_birth=LocalDate.parse(str);
+           Employee newEmployee = new Employee(first_name, last_name,date_of_birth);
+           employeeDAO.insertEmployee(newEmployee);
+           response.sendRedirect("list");
         }
         private void updateEmployee (HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
             int id = Integer.parseInt(request.getParameter("id"));
             String first_name = request.getParameter("first_name");
             String last_name = request.getParameter("last_name");
-
-            Employee updatedEmployee = new Employee(id, first_name, last_name);
+            String str=request.getParameter("date_of_birth");
+            LocalDate date_of_birth=LocalDate.parse(str);
+            Employee updatedEmployee = new Employee(id, first_name, last_name,date_of_birth);
             employeeDAO.updateEmployee(updatedEmployee);
             response.sendRedirect("list");
         }
